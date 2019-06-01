@@ -278,10 +278,7 @@ class Member < ActiveRecord::Base
       "name" => self.name,
       "app_activated" => self.app_two_factor.activated?,
       "sms_activated" => self.sms_two_factor.activated?,
-      "memo" => self.id,
-      "has_gio_deposite_50" => self.has_gio_deposite_50,
-      "state" => self.state,
-      "two_fa_require_signin" => self.app_two_factor.require_signin?
+      "memo" => self.id
     })
   end
 
