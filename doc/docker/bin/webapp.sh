@@ -6,6 +6,6 @@ docker run -d --name webapp \
   --link redis:redis \
   peatio:base /sbin/my_init --enable-insecure-key
 
-docker-bash webapp bash -lc 'cd /home/app/peatio/; git pull;'
-docker-bash webapp bash -lc 'cd /home/app/peatio/; RAILS_ENV=production ./bin/rake db:migrate;'
-docker-bash webapp bash -lc 'cd /home/app/peatio/; RAILS_ENV=production ./bin/rake assets:precompile;'
+docker-bash webapp bash -lc 'cd /home/deploy/graviex/; git pull;'
+docker-bash webapp bash -lc 'cd /home/deploy/graviex/; RAILS_ENV=production ./bin/rake db:migrate;'
+docker-bash webapp bash -lc 'cd /home/deploy/graviex/; RAILS_ENV=production ./bin/rake assets:precompile;'
