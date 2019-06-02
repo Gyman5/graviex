@@ -10,19 +10,19 @@ CMD ["/sbin/my_init"]
 RUN apt update
 RUN apt-get -y install imagemagick gsfonts
 
-ADD peatio /home/app/peatio
-RUN chown -R app:app /home/app/peatio
+ADD peatio /home/deploy/graviex
+RUN chown -R deploy:deploy /home/deploy/graviex
 
-USER app
-ENV HOME /home/app
+USER deploy
+ENV HOME /home/deploy
 
-WORKDIR /home/app/peatio
+WORKDIR /home/deploy/graviex
 RUN bundle install --without development test --path vendor/bundle
 
 # RUN ./bin/init_config
-ADD conf/rails-amqp.yml /home/app/peatio/config/amqp.yml
-ADD conf/rails-database.yml /home/app/peatio/config/database.yml
-ADD conf/rails-application.yml /home/app/peatio/config/application.yml
+ADD conf/rails-amqp.yml /home/deploy/graviex/config/amqp.yml
+ADD conf/rails-database.yml /home/deploy/graviex/config/database.yml
+ADD conf/rails-application.yml /home/deploy/graviex/config/application.yml
 ADD conf/nginx-peatio-env.conf /etc/nginx/main.d/peatio-env.conf
 
 USER root
@@ -35,7 +35,7 @@ RUN mkdir /etc/nginx/ssl_keys/
 ADD conf/ssl_keys/server.crt /etc/nginx/ssl_keys/server.crt
 ADD conf/ssl_keys/server.key /etc/nginx/ssl_keys/server.key
 
-RUN chown -R app:app /home/app/peatio/config
+RUN chown -R deploy:deploy /home/deploy/graviex/config
 
 RUN rm -f /etc/service/nginx/down
 
